@@ -31,8 +31,10 @@ public class ServiceUser {
 	public String DeleteUser(String username) {
 		String response;
 		Optional<User> user = userDao.findById(username);
+		
 		if (!user.isEmpty()) {
-			userDao.deleteById(username);
+			User userForDelete=user.get();
+			userDao.delete(userForDelete);
 			response = "Usuario borrado";
 		} else {
 			response = "este usuario no existe";
